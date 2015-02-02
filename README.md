@@ -1,4 +1,4 @@
-# 'Mosa
+# MOSA
 
 [Heroku link][heroku]
 
