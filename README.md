@@ -17,8 +17,8 @@ Mosa is an app that provides users with all the necessary info on Bottomless bru
 * [View Wireframes][views]
 * [DB schema][schema]
 
-[views]:
-[schema]:
+[views]:./prep_pics
+[schema]:./pre_pics/IMG_20150202_020426.jpg
 
 ## Implementation Timeline
 
