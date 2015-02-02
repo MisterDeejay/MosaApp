@@ -11,6 +11,7 @@ Mosa is an app that provides users with all the necessary info on Bottomless bru
 - [ ] Create sessions (log in)
 - [ ] Create review
 - [ ] Create comments
+- [ ] Create likes
 
 ## Design Docs
 * [View Wireframes][views]
