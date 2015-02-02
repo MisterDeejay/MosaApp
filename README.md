@@ -17,9 +17,15 @@ Mosa is an app that provides users with all the necessary info on Bottomless bru
 * [View Wireframes][views]
 * [DB schema][schema]
 
-[views]:./prep_pics
-[schema]:./pre_pics/IMG_20150202_020426.jpg
+[views]:./wirefames
+[schema]:./db_schema
 
 ## Implementation Timeline
+* [View Timeline][timeline]
+
+[timeline]:./timeline
 
 ### Bonus Features (TBD)
+- [ ] Facebook login integration
+- [ ] Google login integration
+- [ ] Directions functionality
