@@ -11,10 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150203214444) do
+ActiveRecord::Schema.define(version: 20150206212447) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "restaurants", force: :cascade do |t|
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.string   "url",             default: "unavailable", null: false
+    t.string   "mobile_url",      default: "unavailable", null: false
+    t.string   "display_phone",   default: "unavailable", null: false
+    t.string   "categories",      default: "unavailable", null: false
+    t.string   "name",            default: "unavailable", null: false
+    t.string   "display_address", default: "unavailable", null: false
+    t.string   "image_url",       default: "unavailable", null: false
+    t.float    "lat",             default: 0.0,           null: false
+    t.float    "lng",             default: 0.0,           null: false
+    t.float    "rating",          default: 0.0,           null: false
+    t.string   "neighborhoods",   default: "unavailable", null: false
+    t.string   "yelp_id",         default: "unavailable", null: false
+    t.string   "brunch_days",     default: "unavailable", null: false
+    t.string   "brunch_hours",    default: "unavailable", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",           null: false

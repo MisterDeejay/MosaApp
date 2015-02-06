@@ -1,12 +1,13 @@
 window.Mosa.Collections.Restaurants = Backbone.Collection.extend({
-	url: "/api/restaurants",
+	url: "api/restaurants",
 	model: Mosa.Models.Restaurant,
 
 	getOrFetch: function(id) {
 		var model = this.get(id),
 			collection = this;
-			
+
 		if(!model) {
+			model = new Mosa.Models.Restaurant({ id: id });
 			model.fetch({
 				success: function() {
 					collection.add(model);
@@ -15,9 +16,10 @@ window.Mosa.Collections.Restaurants = Backbone.Collection.extend({
 		} else {
 			model.fetch();
 		}
-		
+
 		return model;
 	}
 })
 
-window.Mosa.Collections.restaurants = new window.Mosa.Collections.Restaurants();
+window.Mosa.Collections.restaurants =
+	new window.Mosa.Collections.Restaurants

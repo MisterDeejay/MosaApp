@@ -1,12 +1,12 @@
 class UsersController < ApplicationController
+  before_action :require_signed_out!
   def create
     @user = User.new(user_params)
-
     if @user.save
       sign_in!(@user)
       redirect_to root_url
     else
-      flash.now[:error] = @user.error.full_messages
+      flash.now[:errors] = @user.errors.full_messages
       render :new
     end
   end
@@ -16,6 +16,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:username, :email, :password)
+    params.require(:user).permit(:username, :email, :password, :login)
   end
 end

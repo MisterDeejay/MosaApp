@@ -5,13 +5,56 @@ window.Mosa = {
   Routers: {},
   initialize: function() {
 	 // Eventually I'm going to boot up a controller here
-    alert("Welcome to 'Mosa. Your one-stop site for all things brunch and booze related.");
 	 // Instantiate new Router and start listening to changes in location bar
-	 new Mosa.Routers.MosaRouter();
+	 new Mosa.Routers.MosaRouter({
+     $rootEl: $('main')
+   });
 	 Backbone.history.start();
   }
 };
 
-$(document).ready(function(){
-  Mosa.initialize();
+Backbone.CompositeView = Backbone.View.extend({
+  addSubview: function(selector, subview) {
+    this.subviews(selector).push(subview);
+    this.attachSubview(selector, subview.render());
+  },
+
+  attachSubview: function(selector, subview) {
+    this.$(selector).append(subview.$el);
+    subview.delegateEvents();
+  },
+
+  attachSubviews: function() {
+    var view = this;
+    _(this.subviews()).each(function(subviews, selector) {
+      view.$(selector).empty();
+      _(subviews).each(function(subview) {
+        view.attachSubview(selector, subview);
+      });
+    });
+  },
+
+  subviews: function(selector) {
+    this._subviews = this._subviews || {};
+
+    if(!selector) {
+      return this._subviews;
+    } else {
+      this._subviews[selector] = this._subviews[selector] || [];
+      return this._subviews[selector];
+    }
+  },
+
+  remove: function() {
+    Backbone.View.prototype.remove.call(this);
+    _(this.subviews()).each(function(subviews, selector) {
+      _(subviews).each(function(subview) {
+        subview.remove();
+      });
+    });
+  }
 });
+
+// $(document).ready(function(){
+//   Mosa.initialize();
+// });

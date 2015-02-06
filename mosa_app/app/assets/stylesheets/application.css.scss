@@ -13,3 +13,19 @@
  *= require_tree .
  *= require_self
  */
+ @import "bootstrap-sprockets";
+ @import "bootstrap";
+
+html, body, #map-canvas {
+  height: 800px;
+  margin: 0;
+  padding: 0;
+}
+
+#sidebar {
+  width: 450px;
+}
+
+ul {
+    list-style-type: none;
+}

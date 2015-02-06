@@ -2,13 +2,54 @@
 <html>
 <head>
   <title>MosaApp</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js">
+  </script>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
-<body>
 
-<%= yield %>
+<body>
+  <nav class='navbar navbar-default navbar-fixed-top'>
+    <div class='container'>
+      <a href="<%= root_url %>" class='navbar-brand'>MOSA Logo</a>
+      <ul class='nav navbar-nav navbar-right'>
+        <li>
+          <% if signed_in? %>
+            <%= button_to "Logout", session_url, method: :delete %>
+          <% else %>
+            <a href="#" data-toggle="modal"
+              data-target="#signup-modal">Sign Up!</a>
+          <% end %>
+        </li>
+        <li>
+          <% unless signed_in? %>
+            <a href="#" data-toggle="modal"
+              data-target="#signin-modal">Sign in</a>
+          <% end %>
+        </li>
+        <li><%= link_to "About", about_page_url %></li>
+        <li><a href="#">Blog</a></li>
+        <li>
+          <a href="#"><%= image_tag "Facebook.png" %></a>
+        </li>
+        <li>
+          <a href="#"><%= image_tag "Twitter.png" %></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class='container'>
+      <% if flash[:errors] %>
+        <% flash[:errors].each do |error| %>
+          <%= error %>
+          <br>
+        <% end %>
+      <% end %>
+
+    <%= yield %>
+  </main>
 
 </body>
 </html>

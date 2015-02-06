@@ -11,12 +11,12 @@
 // about supported directives.
 //
 //= require jquery
-//= require serializeJSON
 //= require jquery_ujs
-//= require turbolinks
+//= require serializeJSON
 //= require underscore
 //= require backbone
 //= require mosa_app
+//= require bootstrap
 //= require_tree ../templates
 //= require_tree ./models
 //= require_tree ./collections
