@@ -1,16 +1,21 @@
 window.Mosa.Routers.MosaRouter = Backbone.Router.extend({
 	initialize: function(options) {
-		console.log("initialize, bitch");
 		this.$rootEl = options.$rootEl;
 	},
 
 	routes: {
-		"map": "index",
+		"": "root",
+		"#?=map": "index",
 		":id-:name": "show"
 	},
 
+	root: function() {
+		var rootView = new Mosa.Views.RootShow();
+
+		this._swapView(rootView);
+	},
+
 	index: function() {
-		console.log("some shit");
 		Mosa.Collections.restaurants.fetch();
 
 		var indexView = new Mosa.Views.RestaurantsIndex({

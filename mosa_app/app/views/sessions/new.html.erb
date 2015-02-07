@@ -1,0 +1,26 @@
+<main class="container">
+  <form id="login-user" action="/session" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+    <div class="row">
+      <div class="col-xs-12 text-center">
+        <label for="email">Username (or Email)</label>
+        <input type="text" id="login_name" name="user[login]">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 text-center">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="user[password]">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 text-center">
+        <button type="button" class="btn btn-success">Guest Login</button>
+        <button type="submit" class="btn btn-primary">Submit!</button>
+      </div>
+    </div>
+  </form>
+</main>
