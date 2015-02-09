@@ -14,7 +14,7 @@
       <form id="find-location" action="index.html" method="post">
         <div class="row">
           <div class="col-xs-12">
-            <button type="button" class="btn btn-primary">
+            <button type="button" class="btn btn-primary" id="current-location">
               Use Current Location
             </button>
           </div>
@@ -24,7 +24,12 @@
           <div class="col-xs-12">
             <input type="text" id="zipcode" name="zipcode"
               placeholder="Enter Your Zipcode">
-            <button name="submit">Submit!</button>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12">
+            <button id="submit" name="submit">Submit!</button>
           </div>
         </div>
       </form>

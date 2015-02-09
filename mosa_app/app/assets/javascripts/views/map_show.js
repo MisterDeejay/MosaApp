@@ -4,7 +4,7 @@ window.Mosa.Views.MapShow = Backbone.CompositeView.extend({
     id: "map-canvas"
   },
 
-  initialize: function () {
+  initialize: function (location_arr) {
     this._markers = {};
 
     this.listenTo(this.collection, 'add sync', this.addMarker);

@@ -2,6 +2,10 @@ window.Mosa.Collections.Restaurants = Backbone.Collection.extend({
 	url: "api/restaurants",
 	model: Mosa.Models.Restaurant,
 
+	comparator: function() {
+		this.model.get("distance");
+	}
+
 	getOrFetch: function(id) {
 		var model = this.get(id),
 			collection = this;
