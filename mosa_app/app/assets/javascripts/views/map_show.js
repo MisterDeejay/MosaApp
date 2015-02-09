@@ -1,12 +1,9 @@
 window.Mosa.Views.MapShow = Backbone.CompositeView.extend({
   template: JST["restaurants/list_item"],
-  attributes: {
-    id: "map-canvas"
-  },
+  id: "map",
 
   initialize: function (location_arr) {
     this._markers = {};
-
     this.listenTo(this.collection, 'add sync', this.addMarker);
     this.listenTo(this.collection, 'remove', this.removeMarker);
   },
@@ -14,11 +11,13 @@ window.Mosa.Views.MapShow = Backbone.CompositeView.extend({
   render: function() {
     var mapOptions = {
       center: { lat: window.latLng[0], lng: window.latLng[1] },
-      zoom: 13
+      zoom: 14
     };
 
     this._map = new google.maps.Map(this.el, mapOptions);
     this.collection.each(this.addMarker.bind(this));
+
+    return this;
   },
 
   addMarker: function(restaurant) {

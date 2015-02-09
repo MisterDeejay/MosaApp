@@ -16,7 +16,7 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
-html, body, #map-canvas {
+html, body, #map {
   height: 800px;
   margin: 0;
   padding: 0;
@@ -32,4 +32,8 @@ ul {
 
 body {
   padding-top: 100px;
+}
+
+img.restaurant {
+  width: 277px
 }

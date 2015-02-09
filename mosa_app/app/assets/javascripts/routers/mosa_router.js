@@ -33,10 +33,7 @@ window.Mosa.Routers.MosaRouter = Backbone.Router.extend({
 		var indexView = new Mosa.Views.RestaurantsIndex({
 			collection: Mosa.Collections.restaurants
 		});
-		var mapView = new Mosa.Views.MapShow({
-			collection: Mosa.Collections.restaurants
-		});
-		this._swapMapView(indexView, mapView);
+		this._swapView(indexView);
 	},
 
 	show: function(id) {
@@ -50,29 +47,32 @@ window.Mosa.Routers.MosaRouter = Backbone.Router.extend({
 
 	_swapView: function(view) {
 		// stopListening() removes events on a view
-		if(this._currentView || this._mapView) {
-			this._currentView.remove();
-			this._mapView.remove();
-		}
-		this._currentView = view;
-		this.$rootEl.html(view.render().$el);
-	},
-
-	_swapMapView: function(view, mapView) {
 		if(this._currentView && this._mapView) {
 			this._currentView.remove();
 			this._mapView.remove();
-		} else {
+		} else if(this._currentView) {
 			this._currentView.remove();
 		}
-
 		this._currentView = view;
-		this._mapView = mapView;
 		this.$rootEl.html(view.render().$el);
-		this.$rootEl.append(mapView.$el);
-		mapView.render();
 	}
 })
+
+// 	_swapMapView: function(view, mapView) {
+// 		if(this._currentView && this._mapView) {
+// 			this._currentView.remove();
+// 			this._mapView.remove();
+// 		} else {
+// 			this._currentView.remove();
+// 		}
+//
+// 		this._currentView = view;
+// 		this._mapView = mapView;
+// 		this.$rootEl.html(view.render().$el);
+// 		this.$rootEl.append(mapView.$el);
+// 		mapView.render();
+// 	}
+// })
 
 
 // replaceWith method replaces a jQuery $el with another $el (ie a button with
