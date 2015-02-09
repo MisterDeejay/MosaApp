@@ -4,27 +4,16 @@ window.Mosa.Views.RestaurantsIndex = Backbone.CompositeView.extend({
   id: 'sidebar',
 
   initialize: function(options) {
-    this.currentLocation = options.location_arr;
+    Mosa.Views.RestaurantsIndex.page = Mosa.Views.RestaurantsIndex.page || 0;
+    // add listener to event triggered by end of sorting to add subviews
     this.listenTo(this.collection, 'add', this.addRestaurantSubview);
-    this.listenTo(this.collection, 'sync', this.sortCollectionByDist);
-    var view = this;
-    // for (var i = 0; i < 20; i++) {
-    //   view.addRestaurantSubview(this.collection[i]);
-    // }
+    this.listenTo(this.collection, 'sync', this.sortByDist);
   },
 
-  sortCollectionByDist: function(event){
-    var view = this;
-    restaurants = this.collection.slice(0,3);
-    for(var i = 0; i < this.collection.length; i++) {
-      this.collection.models[i].attributes.display_address =
-        view.parseAddress(this.collection.models[i]);
-      debugger
-
-    }
-
+  sortByDist: function() {
+    this.collection.sort();
+    this.render();
   },
-
 
   // Eventually refactor this method and make is a private method that you call
   // on the restaurant's display address
@@ -50,7 +39,14 @@ window.Mosa.Views.RestaurantsIndex = Backbone.CompositeView.extend({
   },
 
   render: function() {
-    var content = this.template({ restaurants: this.collection });
+    debugger
+    var restaurantList = this.collection.models.slice(
+      (Mosa.Views.RestaurantsIndex.page * 20), ((Mosa.Views.RestaurantsIndex.page * 20) + 20)
+    );
+    var restListCollection = new Mosa.Collections.Restaurants(restaurantList);
+    debugger
+    // for(var i = 0; i < 20; i++)
+    var content = this.template({ restaurants: restListCollection });
     this.$el.html(content);
     this.attachSubviews();
     return this;

@@ -13,7 +13,7 @@ window.Mosa.Views.MapShow = Backbone.CompositeView.extend({
 
   render: function() {
     var mapOptions = {
-      center: { lat: 37.7833, lng: -122.4167 },
+      center: { lat: window.latLng[0], lng: window.latLng[1] },
       zoom: 13
     };
 

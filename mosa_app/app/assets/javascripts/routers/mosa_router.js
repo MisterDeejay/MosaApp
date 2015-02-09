@@ -27,16 +27,13 @@ window.Mosa.Routers.MosaRouter = Backbone.Router.extend({
 
 		// location_arr now holds position to center map at and to filter results that
 		// closest
-		var location_arr = arguments[0];
 		// debugger
 		// 37.7432421, -122.49766799999998
 		// 37.7903405, -122.4073819
 		var indexView = new Mosa.Views.RestaurantsIndex({
-			location_arr: location_arr,
 			collection: Mosa.Collections.restaurants
 		});
 		var mapView = new Mosa.Views.MapShow({
-			location_arr: location_arr,
 			collection: Mosa.Collections.restaurants
 		});
 		this._swapMapView(indexView, mapView);
@@ -62,10 +59,13 @@ window.Mosa.Routers.MosaRouter = Backbone.Router.extend({
 	},
 
 	_swapMapView: function(view, mapView) {
-		if(this._currentView || this._mapView) {
+		if(this._currentView && this._mapView) {
 			this._currentView.remove();
 			this._mapView.remove();
+		} else {
+			this._currentView.remove();
 		}
+
 		this._currentView = view;
 		this._mapView = mapView;
 		this.$rootEl.html(view.render().$el);

@@ -17,8 +17,8 @@ window.Mosa.Views.RootShow = Backbone.CompositeView.extend({
     if (event.type === "click") {
       var view = this;
       navigator.geolocation.getCurrentPosition(function(position) {
-        view.latLng = [position.coords.latitude, position.coords.longitude];
-        view.router.index(view.latLng);
+        window.latLng = [position.coords.latitude, position.coords.longitude];
+        view.router.index();
       });
     } else {
       event.preventDefault();
@@ -28,8 +28,8 @@ window.Mosa.Views.RootShow = Backbone.CompositeView.extend({
 
       var view = this;
       geocoder.geocode({ "address": zipcode }, function(results) {
-        view.latLng = [results[0].geometry.location.k, results[0].geometry.location.D]
-        view.router.index(view.latLng);
+        window.latLng = [results[0].geometry.location.k, results[0].geometry.location.D]
+        view.router.index();
       });
     }
   },
