@@ -11,29 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150210013244) do
+ActiveRecord::Schema.define(version: 20150210195336) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "restaurants", force: :cascade do |t|
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
-    t.string   "url",             default: "unavailable", null: false
-    t.string   "mobile_url",      default: "unavailable", null: false
-    t.string   "display_phone",   default: "unavailable", null: false
-    t.string   "categories",      default: "unavailable", null: false
-    t.string   "name",            default: "unavailable", null: false
-    t.string   "display_address", default: "unavailable", null: false
-    t.string   "image_url",       default: "unavailable", null: false
-    t.float    "lat",             default: 0.0,           null: false
-    t.float    "lng",             default: 0.0,           null: false
-    t.float    "rating",          default: 0.0,           null: false
-    t.string   "neighborhoods",   default: "unavailable", null: false
-    t.string   "yelp_id",         default: "unavailable", null: false
-    t.string   "brunch_days",     default: "unavailable", null: false
-    t.string   "brunch_hours",    default: "unavailable", null: false
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+    t.string   "url",                default: "unavailable", null: false
+    t.string   "mobile_url",         default: "unavailable", null: false
+    t.string   "display_phone",      default: "unavailable", null: false
+    t.string   "categories",         default: "unavailable", null: false
+    t.string   "name",               default: "unavailable", null: false
+    t.string   "display_address",    default: "unavailable", null: false
+    t.string   "image_url",          default: "unavailable", null: false
+    t.float    "lat",                default: 0.0,           null: false
+    t.float    "lng",                default: 0.0,           null: false
+    t.float    "rating",             default: 0.0,           null: false
+    t.string   "neighborhoods",      default: "unavailable", null: false
+    t.string   "yelp_id",            default: "unavailable", null: false
+    t.string   "brunch_days",        default: "unavailable", null: false
     t.integer  "btm_price"
+    t.string   "brunch_hours_start"
+    t.string   "brunch_hours_end"
   end
 
   create_table "users", force: :cascade do |t|

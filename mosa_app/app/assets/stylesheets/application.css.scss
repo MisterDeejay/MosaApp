@@ -17,14 +17,34 @@
  @import "bootstrap";
 
 html, body, #map {
-  height: 800px;
+  height: 100%;
   margin: 0;
   padding: 0;
 }
 
+#map-canvas {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+#map-container {
+  position: fixed;
+  top: 64px;
+  right: 0;
+  bottom: 0;
+}
+
+.restaurants-index {
+  position: relative;
+  overflow-y: scroll;
+  bottom: 0;
+  width: 100%;
+}
+
 ul {
-    list-style-type: none;
-    margin-left: -33px;
+  list-style-type: none; 
 }
 
 body {
@@ -32,7 +52,7 @@ body {
 }
 
 img.restaurant {
-  width: 410px
+  width: 100%;
 }
 
 #map {
@@ -42,4 +62,10 @@ img.restaurant {
 
 #map.invisible {
  opacity: 0;
+}
+
+.restaurant-slider {
+  position: absolute;
+  bottom: 0;
+  top: 64px;
 }
