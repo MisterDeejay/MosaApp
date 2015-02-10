@@ -15,12 +15,20 @@ window.Mosa = {
 
 Backbone.CompositeView = Backbone.View.extend({
   addSubview: function(selector, subview) {
+    if(this.subviews(selector).length === 20 ||
+      (selector === "#map-canvas" && this.subviews(selector).length === 1)) {
+      this._subviews[selector] = [];
+    }
     this.subviews(selector).push(subview);
     this.attachSubview(selector, subview.render());
   },
 
   attachSubview: function(selector, subview) {
-    // debugger
+    $subviewEl = this.$(selector)
+    if(($subviewEl).children().length === 20 ||
+      (selector === "#map-canvas" && $subviewEl.children().length === 1)) {
+      $subviewEl.empty();
+    }
     this.$(selector).append(subview.$el);
     subview.delegateEvents();
   },

@@ -11,7 +11,7 @@ window.Mosa.Views.MapShow = Backbone.CompositeView.extend({
   render: function() {
     var mapOptions = {
       center: { lat: window.latLng[0], lng: window.latLng[1] },
-      zoom: 14
+      zoom: 12
     };
 
     this._map = new google.maps.Map(this.el, mapOptions);
@@ -52,11 +52,14 @@ window.Mosa.Views.MapShow = Backbone.CompositeView.extend({
   },
 
   showMarkerInfo: function(event, marker, restaurant) {
+    if(this.infoWindow) {
+      this.infoWindow.close();
+    }
     var restaurantContent = this.template({ restaurant: restaurant });
-    var infoWindow = new google.maps.InfoWindow({
+    this.infoWindow = new google.maps.InfoWindow({
       content: restaurantContent
     });
 
-    infoWindow.open(this._map, marker);
+    this.infoWindow.open(this._map, marker);
   }
 })

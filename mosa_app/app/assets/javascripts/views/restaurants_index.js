@@ -2,11 +2,68 @@ window.Mosa.Views.RestaurantsIndex = Backbone.CompositeView.extend({
   template: JST['restaurants/index'],
   id: 'app-view',
 
+  events: {
+    'click a.sort' : 'resortCollection'
+  },
+
   initialize: function(options) {
     Mosa.Views.RestaurantsIndex.page = Mosa.Views.RestaurantsIndex.page || 0;
     // add listener to event triggered by end of sorting to add subviews
     // this.listenTo(this.collection, 'add', this.addRestaurantSubview);
     this.listenTo(this.collection, 'sync', this.sortByDist);
+  },
+
+  resortCollection: function(event) {
+    event.preventDefault();
+    if(event.currentTarget.id === "distance") {
+      this.collection.comparator = function(restaurant) {
+        return restaurant.distance();
+      }
+      this.sortByDist();
+    } else if(event.currentTarget.id === "high-rated") {
+      this.sortByRating();
+    } else if(event.currentTarget.id === "low-price") {
+      this.sortByPrice("asc")
+    } else if(event.currentTarget.id === "high-price") {
+      this.sortByPrice("desc");
+    } else {
+      this.sortByNumReviews();
+    }
+  },
+
+  sortByRating: function() {
+    this.collection.comparator = function(restaurant) {
+      return restaurant.get("rating");
+    };
+  },
+
+  sortByNumReviews: function() {
+    this.collection.comparator = function(restaurant) {
+      return restaurant.get("num_reviews");
+    };
+  },
+
+  sortByPrice: function(options) {
+    if(options == "asc") {
+        var sortedRestaurants = this.collection.sortBy(function(restaurant) {
+          return restaurant.get("btm_price");
+        });
+    } else {
+      var sortedRestaurants = this.collection.sortBy(function(restaurant) {
+        return (-1 * restaurant.get("btm_price"));
+      });
+    }
+    this.collection = new Mosa.Collections.Restaurants(sortedRestaurants, {
+      comparator: false
+    });
+    Mosa.Views.RestaurantsIndex.page = 0;
+
+    // this.render();
+    var view = this;
+    this.restListCollection().each(function(restaurant) {
+      view.addRestaurantSubview(restaurant);
+    });
+    this.addMapSubview(this.restListCollection());
   },
 
   sortByDist: function() {
@@ -41,7 +98,9 @@ window.Mosa.Views.RestaurantsIndex = Backbone.CompositeView.extend({
       (Mosa.Views.RestaurantsIndex.page * 20), ((Mosa.Views.RestaurantsIndex.page * 20) + 20)
     );
 
-    return new Mosa.Collections.Restaurants(restaurantList);
+    return new Mosa.Collections.Restaurants(restaurantList, {
+      comparator: false
+    });
   },
 
   addRestaurantSubview: function(restaurant) {
@@ -56,12 +115,15 @@ window.Mosa.Views.RestaurantsIndex = Backbone.CompositeView.extend({
       collection: restList
     });
     this.addSubview("#map-canvas", mapView);
+    google.maps.event.trigger(map, 'resize');
+    // mapView._map.setZoom(mapView._map.getZoom());
   },
 
   render: function() {
     var content = this.template({ restaurants: this.restListCollection() });
     this.$el.html(content);
     this.attachSubviews();
+
     return this;
   }
 })

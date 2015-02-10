@@ -1,2 +1,39 @@
-<ul class="restaurants-index col-xs-3"></ul>
-<div id="map-canvas" class="col-xs-9"></div>
+<div class=container-fluid>
+  <div class="row">
+    <div class="col-xs-4 sidebar">
+      <form id="reorder" action="index.html" method="post">
+        <ul id="sort-by">
+          <h4>Sort By</h4>
+          <li>
+            <a class="sort" id="distance" href="#">Distance</a>
+          </li>
+
+          <li>
+            <a class="sort" id="high-rated" href="#">Highest Rated</a>
+          </li>
+
+          <li>
+            <a class="sort" id="low-price" href="#">Lowest Bottomless Price</a>
+          </li>
+
+          <li>
+            <a class="sort" id="high-price" href="#">Highest Bottomless Price</a>
+          </li>
+
+          <li>
+            <a class="sort" id="most-reviewed" href="#">Most Reviewed</a>
+          </li>
+        </ul>
+
+        <label for="btm-weekday">Bottomless Weekdays!</label>
+        <input type="checkbox" id="btm-weekday">
+
+        <label for="open">Bottomless Now!</label>
+        <input type="checkbox" id="open">
+      </form>
+      <ul class="restaurants-index nav nav-sidebar"></ul>
+    </div>
+
+    <div id="map-canvas" class="col-xs-8"></div>
+  </div>
+</div>
