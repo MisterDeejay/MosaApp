@@ -1,6 +1,7 @@
 window.Mosa.Views.MapShow = Backbone.CompositeView.extend({
   template: JST["restaurants/list_item"],
   id: "map",
+  className: "invisible",
 
   initialize: function (location_arr) {
     this._markers = {};
@@ -15,13 +16,21 @@ window.Mosa.Views.MapShow = Backbone.CompositeView.extend({
     };
 
     this._map = new google.maps.Map(this.el, mapOptions);
+    var view = this;
+    google.maps.event.addListenerOnce(this._map, 'idle', function() {
+      google.maps.event.trigger(view._map, 'resize');
+      view._map.setCenter({ lat: window.latLng[0], lng: window.latLng[1] });
+      setTimeout(
+        function(){ $("#map").removeClass('invisible') }.bind(this), 0
+      );
+    });
+
     this.collection.each(this.addMarker.bind(this));
 
     return this;
   },
 
   addMarker: function(restaurant) {
-    // debugger
     if(this._markers[restaurant.id]) { return };
     var view = this;
 

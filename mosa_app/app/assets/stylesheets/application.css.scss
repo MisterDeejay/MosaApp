@@ -34,3 +34,12 @@ body {
 img.restaurant {
   width: 410px
 }
+
+#map {
+ opacity: 100;
+ transition: opacity 1s;
+}
+
+#map.invisible {
+ opacity: 0;
+}
