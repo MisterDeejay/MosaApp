@@ -1,4 +1,5 @@
 class Api::RestaurantsController < ApplicationController
+  before_action :require_signed_in!
   def index
     @restaurants = Restaurant.all
     render json: @restaurants

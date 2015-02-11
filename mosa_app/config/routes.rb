@@ -12,5 +12,6 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     resources :restaurants, only: [:index, :show]
+    resources :reviews, only: [:create, :update, :destroy]
   end
 end

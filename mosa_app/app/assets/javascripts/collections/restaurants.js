@@ -2,6 +2,12 @@ window.Mosa.Collections.Restaurants = Backbone.Collection.extend({
 	url: "api/restaurants",
 	model: Mosa.Models.Restaurant,
 
+	reviews: function() {
+		this._reviews = this._reviews ||
+			new Mosa.Collections.RestaurantReviews([], { restaurant: this });
+		return this._reviews;
+	}
+
 	comparator: function(restaurant) {
 		return restaurant.distance();
 	},
