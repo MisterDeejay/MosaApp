@@ -1,12 +1,12 @@
 class Api::RestaurantsController < ApplicationController
   before_action :require_signed_in!
   def index
-    @restaurants = Restaurant.all
-    render json: @restaurants
+    @restaurants = Restaurant.includes(:reviews).all
+    render :index
   end
 
   def show
-    @restaurant = Restaurant.find(params[:id])
-    render json: @restaurant
+    @restaurant = Restaurant.includes(:reviews).find(params[:id])
+    render :show
   end
 end

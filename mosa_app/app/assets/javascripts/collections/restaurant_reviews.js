@@ -1,8 +1,6 @@
-window.Mosa.Collections.RestaurantReviews = Backbone.Collections.extend({
+window.Mosa.Collections.RestaurantReviews = Backbone.Collection.extend({
   model: Mosa.Models.Review,
-  url: function() {
-    return this.restaurant.url() + "/reviews";
-  },
+  url: "/api/reviews",
 
   initialize: function(models, options) {
     this.restaurant = options.restaurant;

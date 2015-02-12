@@ -38,6 +38,7 @@ window.Mosa.Routers.MosaRouter = Backbone.Router.extend({
 
 	show: function(id) {
 		var restaurant = Mosa.Collections.restaurants.getOrFetch(id);
+		debugger
 
 		var showView = new Mosa.Views.RestaurantShow({
 			model: restaurant

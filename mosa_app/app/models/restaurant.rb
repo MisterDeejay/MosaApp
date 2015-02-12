@@ -30,5 +30,5 @@ class Restaurant < ActiveRecord::Base
   validates_uniqueness_of :name, scope: [:display_address]
   validates_uniqueness_of :lng, scope: [:lat]
 
-  has_many :reviews
+  has_many :reviews, dependent: :destroy
 end

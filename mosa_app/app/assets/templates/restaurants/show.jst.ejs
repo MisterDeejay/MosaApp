@@ -1,16 +1,23 @@
-<img src="http://ak.picdn.net/shutterstock/videos/1811054/preview/stock-
-footage-close-up-of-chef-hands-cooking-and-preparing-asian-food-and-sushi-
-in-restaurant-kitchen-rack-focus.jpg" alt="<%= restaurant.escape("name") %>"
-height="" width=""/>
-<br>
-<%= restaurant.escape("name") %><br>
+<main class="rest-details">
+  <div class="row">
+    <div class="row">
+      <div class="col-xs-12 text-center img-responsive">
+        <img src="http://ak.picdn.net/shutterstock/videos/1811054/preview/stock-
+        footage-close-up-of-chef-hands-cooking-and-preparing-asian-food-and-sushi-
+        in-restaurant-kitchen-rack-focus.jpg" alt="<%= restaurant.escape("name") %>"/>
+      </div>
+    </div>
 
-<%= restaurant.escape("address") %>, <%= restaurant.escape("city") %>,
-<%= restaurant.escape("state_code") %><br>
+    <%= restaurant.escape("name") %><br>
 
-<%= restaurant.escape("telephone") %><br>
+    <%= restaurant.escape("address") %>, <%= restaurant.escape("city") %>,
+    <%= restaurant.escape("state_code") %><br>
 
-<a href="<%= restaurant.escape("url") %>" target="_blank">website</a>
-<br><br>
+    <%= restaurant.escape("telephone") %><br>
 
-<a href="#/restaurants/new">New Review</a>
+    <a href="<%= restaurant.escape("url") %>" target="_blank">website</a>
+    <br><br>
+
+    <a href="#/restaurants/new">New Review</a>
+  </div>
+</main>

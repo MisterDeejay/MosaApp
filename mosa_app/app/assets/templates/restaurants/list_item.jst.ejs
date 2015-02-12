@@ -1,15 +1,32 @@
-<a class="list-item" href="/#<%= restaurant.escape("id") %>-<%= restaurant.escape("name") %>"
-  target="_blank">
-  <div id="<%= restaurant.escape("name") %>-img">
-    <img class="restaurant" src="http://ak.picdn.net/shutterstock/videos/1811054/preview/stock-
-    footage-close-up-of-chef-hands-cooking-and-preparing-asian-food-and-sushi-
-    in-restaurant-kitchen-rack-focus.jpg" alt="<%= restaurant.escape("name") %>"
-    height="" width=""/>
-  </div>
+<div class="container-fluid">
+    <div class="row" id="<%= restaurant.escape("name") %>-img">
+      <a class="list-item" href="/#<%= restaurant.escape("id") %>-<%= restaurant.escape("name") %>"
+        target="_blank">
+      <div class="col-xs-12">
+        <img class="restaurant" src="http://ak.picdn.net/shutterstock/videos/1811054/preview/stock-
+        footage-close-up-of-chef-hands-cooking-and-preparing-asian-food-and-sushi-
+        in-restaurant-kitchen-rack-focus.jpg" alt="<%= restaurant.escape("name") %>"
+        height="" width=""/>
+      </div>
+    </div>
 
-  <div id="<%= restaurant.escape("name") %>-info">
-    <%= restaurant.escape("name") %>
-    <br>
-    <%= restaurant.escape("address") %>
-  </div>
-</a>
+    <div id="<%= restaurant.escape("name") %>-info" class="col-xs-12">
+      <p class="place-name"><%= restaurant.escape("name") %></p>
+    </div>
+
+    <div id="<%= restaurant.escape("name") %>-address" class="col-xs-12">
+      <p class="place-address"><%= restaurant.display_address() %></p>
+    </div>
+  </a>
+
+    <div id="<%= restaurant.escape("name") %>-link" class="col-xs-12">
+      <a href="<%= restaurant.escape("url") %>" target="_blank">Website</a>
+    </div>
+
+    <a class="list-item" href="/#<%= restaurant.escape("id") %>-<%= restaurant.escape("name") %>"
+      target="_blank">
+      <div id="<%= restaurant.escape("name") %>-excerpt" class="col-xs-12">
+        <p><%= restaurant.get("review").body %></p>
+      </div>
+    </a>
+</div>
